@@ -526,7 +526,7 @@ LUA_API void lua_pushinteger (lua_State *L, lua_Integer n) {
 LUA_API const char *lua_pushlstring (lua_State *L, const char *s, size_t len) {
   TString *ts;
   lua_lock(L);
-  ts = (len == 0) ? luaS_new(L, "") : luaS_newlstr(L, s, len);
+  ts = (len == 0) ? luaS_new(L, "") : luaS_newlstr(L, s, len); /* 构造TString，有可能是cache中获取 */ 
   setsvalue2s(L, L->top.p, ts);
   api_incr_top(L);
   luaC_checkGC(L);

@@ -41,6 +41,13 @@ LUA_API void lua_pushcclosure (lua_State *L, lua_CFunction fn, int n) {
     settt_(io, LUA_VLCF); \ /* 设置struct TValue 的 tt_(类型标识) 为 light C function*/
 }
 
+#define api_incr_top(L)	
+{ \
+    L->top.p++; \
+		api_check(L, L->top.p <= L->ci->top.p, \
+					"stack overflow"); \
+}
+
 ```
 
 整个流程很清晰，取操作的 lua_State 的栈顶，并将 c function 设置为栈顶值，将栈增加一位并检测是否 stack overflow。
