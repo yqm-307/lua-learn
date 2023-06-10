@@ -308,7 +308,7 @@ static void checkHeader (LoadState *S) {
 
 
 /*
-** Load precompiled chunk.
+** Load precompiled chunk. 加载预编译部分 : 主要校验文件头和函数块部分
 */
 LClosure *luaU_undump(lua_State *L, ZIO *Z, const char *name) {
   LoadState S;
@@ -321,13 +321,13 @@ LClosure *luaU_undump(lua_State *L, ZIO *Z, const char *name) {
     S.name = name;
   S.L = L;
   S.Z = Z;
-  checkHeader(&S);
+  checkHeader(&S);              // 文件头
   cl = luaF_newLclosure(L, loadByte(&S));
   setclLvalue2s(L, L->top.p, cl);
   luaD_inctop(L);
   cl->p = luaF_newproto(L);
   luaC_objbarrier(L, cl, cl->p);
-  loadFunction(&S, cl->p, NULL);
+  loadFunction(&S, cl->p, NULL);  // 函数块
   lua_assert(cl->nupvalues == cl->p->sizeupvalues);
   luai_verifycode(L, cl->p);
   return cl;

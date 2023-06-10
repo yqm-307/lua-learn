@@ -212,7 +212,7 @@ static void dumpHeader (DumpState *D) {
 
 
 /*
-** dump Lua function as precompiled chunk
+** dump Lua function as precompiled chunk 转储lua函数作为预编译的一部分
 */
 int luaU_dump(lua_State *L, const Proto *f, lua_Writer w, void *data,
               int strip) {

@@ -117,7 +117,7 @@ typedef int (*lua_KFunction) (lua_State *L, int status, lua_KContext ctx);
 
 
 /*
-** Type for functions that read/write blocks when loading/dumping Lua chunks
+** Type for functions that read/write blocks when loading/dumping Lua chunks 用来读写lua 字节码文件的函数
 */
 typedef const char * (*lua_Reader) (lua_State *L, void *ud, size_t *sz);
 

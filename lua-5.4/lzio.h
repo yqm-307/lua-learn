@@ -53,10 +53,10 @@ LUAI_FUNC size_t luaZ_read (ZIO* z, void *b, size_t n);	/* read next n bytes */
 /* --------- Private Part ------------------ */
 
 struct Zio {
-  size_t n;			/* bytes still unread */
-  const char *p;		/* current position in buffer */
-  lua_Reader reader;		/* reader function */
-  void *data;			/* additional data */
+  size_t n;			/* bytes still unread */ // 未读取的字节
+  const char *p;		/* current position in buffer */  // 当前读取下标
+  lua_Reader reader;		/* reader function */       // io函数
+  void *data;			/* additional data */   // 数据
   lua_State *L;			/* Lua state (for reader) */
 };
 
